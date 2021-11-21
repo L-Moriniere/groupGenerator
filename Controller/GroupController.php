@@ -11,6 +11,7 @@ final class GroupController
 
         if(isset($_POST['nbMax']))
             $nbMax = $_POST['nbMax'];
+        else $nbMax = 1;
 
         $A_groupes = $O_group->getGroupe($nbMax);
 

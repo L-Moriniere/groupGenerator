@@ -14,18 +14,17 @@ final class Group
 
         $A_listeEtu = array();
 
-
+        //Recuperation du fichier sous forme d'array
         if (isset($_POST['submit']))
         {
-            //ressource type
-            $R_handle = fopen($_FILES['fileEtu']['tmp_name'], "r");
-            $S_headers = fgetcsv($R_handle, 1000, ",");
+            $handle = fopen($_FILES['fileEtu']['tmp_name'], "r");
+            $S_headers = fgetcsv($handle, 1000, ",");
 
-            while (($A_data = fgetcsv($R_handle, 1000, ",")) !== FALSE)
+            while (($A_data = fgetcsv($handle, 1000, ",")) !== FALSE)
             {
                 array_push($A_listeEtu, $A_data);
             }
-            fclose($R_handle);
+            fclose($handle);
         }
 
         for ($i = 1; $i <= 2; $i++) {
@@ -34,7 +33,10 @@ final class Group
 
         shuffle($A_listeEtu);
 
+        //decoupe en groupe avec nbMax par groupe
         $A_groupes = array_chunk($A_listeEtu, $I_nbMax);
+
+        //Equilibration des groupes
         $A_groupes = $this->equilibrate($A_groupes, $I_nbMax);
 
 
@@ -47,7 +49,9 @@ final class Group
     {
         $I_nbGroupe = count($A_groupes)-1;
 
-
+        //Si le dernier groupe n'a pas autant de nombre d'individus que l'avant dernier groupe,
+        //enleve le dernier membre de l'avant dernier groupe pour le rajouter au dernier
+        // et ainsi de suite
         if (count($A_groupes[$I_nbGroupe]) == $I_nbMax || count($A_groupes[$I_nbGroupe-1]) <= $I_nbMax-1 || count($A_groupes[$I_nbGroupe]) == $I_nbMax-1)
         {
             return $A_groupes;
