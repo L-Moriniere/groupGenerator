@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+# Ni un répertoire...
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Route all other requests
+RewriteRule (.*) index.php?url=$1 [L,QSA]
+</IfModule>
