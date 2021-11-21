@@ -4,6 +4,7 @@ $I_compteurGroupe = 1;
 
 
 echo "<article class='container-fluid mb-5'>
+        <h6 class='leftH6'>Container</h6>
         <section class='row justify-content-around p-5' >
            <h6 class='leftH6'>Groupes</h6>";
 

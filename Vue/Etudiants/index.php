@@ -15,6 +15,7 @@
                 <h3 class="card-title">Paramètres groupes</h3>
                 <form action="./group" method="post" enctype="multipart/form-data">
                     <article>
+                        <h6 class="leftH6">Form article</h6>
                         <section class="form-group">
                             <h6 class="leftH6">Nombre individus</h6>
                             <label for="nbMax">Nombre d'individus par groupe</label>
